@@ -40,6 +40,9 @@ public class ProjectServices {
 			 return ResponseEntity.notFound().build();
 		 projectFound.setProjectID(project.getProjectID());
 		 projectFound.setProjectName(project.getProjectName());
+		 projectFound.setStartDate(project.getStartDate());
+		 projectFound.setEndDate(project.getEndDate());
+		 projectFound.setPriority(project.getPriority());
 		 projectRepo.save(projectFound);
 		 return ResponseEntity.noContent().build();
 	 }

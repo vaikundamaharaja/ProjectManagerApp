@@ -18,6 +18,15 @@ public class Project {
 	@Column(name = "project")
 	private String projectName;	
 	
+	@Column(name = "start_date")
+	private Date startDate;
+	
+	@Column(name = "end_date")
+	private Date endDate;
+	
+	private int priority;
+	
+	
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -36,13 +45,6 @@ public class Project {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
-	@Column(name = "start_date")
-	private Date startDate;
-	
-	@Column(name = "end_date")
-	private Date endDate;
-	
-	private int priority;
 	
 	public String getProjectID() {
 		return projectID;
