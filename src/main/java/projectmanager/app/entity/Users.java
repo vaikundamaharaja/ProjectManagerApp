@@ -21,12 +21,7 @@ public class Users {
 	
 	@Column(name = "employee_id")
 	private String employeeID;
-	
-	@Column(name = "project_id")
-	private String projectID;
-	
-	@Column(name = "task_id")
-	private String taskID;
+
 
 	public String getUserID() {
 		return userID;
@@ -60,21 +55,7 @@ public class Users {
 		this.employeeID = employeeID;
 	}
 
-	public String getProjectID() {
-		return projectID;
-	}
-
-	public void setProjectID(String projectID) {
-		this.projectID = projectID;
-	}
-
-	public String getTaskID() {
-		return taskID;
-	}
-
-	public void setTaskID(String taskID) {
-		this.taskID = taskID;
-	}
+	
 	
 	
 }

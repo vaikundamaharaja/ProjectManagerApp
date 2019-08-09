@@ -115,6 +115,8 @@ public class TaskServices {
 		 findTask.setEndDate(task.getEndDate());
 		 findTask.setStartDate(task.getStartDate());
 		 findTask.setPriority(task.getPriority());
+		 findTask.setStatus(task.getStatus());
+		 findTask.setUserID(task.getUserID());
 		 taskRepo.save(findTask);
 		 return ResponseEntity.noContent().build();
 	 }

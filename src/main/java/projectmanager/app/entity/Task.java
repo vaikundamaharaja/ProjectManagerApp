@@ -14,15 +14,36 @@ public class Task {
 	@Id
 	@Column(name = "task_id")
 	private String taskID;
+	
 	@Column(name = "parent_id")
 	private String parentID;
+	
 	@Column(name = "project_id")
 	private String projectID;
+	
+	private String task;
+	
 	@Column(name = "start_date")
 	private Date startDate;
+	
 	@Column(name = "end_date")
 	private Date endDate;
-	private String task;
+
+	private String status;
+	
+	private int priority;
+	
+	@Column(name = "user_id")
+	private String userID;
+	
+	public String getUserID() {
+		return userID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+
 	public String getTask() {
 		return task;
 	}
@@ -31,9 +52,6 @@ public class Task {
 		this.task = task;
 	}
 
-	private String status;
-	
-	private int priority;
 
 	public String getTaskID() {
 		return taskID;

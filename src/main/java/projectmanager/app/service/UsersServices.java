@@ -42,8 +42,6 @@ public class UsersServices {
 	 userFound.setFirstName(user.getFirstName());
 	 userFound.setLastName(user.getLastName());
 	 userFound.setEmployeeID(user.getEmployeeID());
-	 userFound.setProjectID(user.getProjectID());
-	 userFound.setTaskID(user.getTaskID());
 	 usersRepo.save(userFound);
 	 return ResponseEntity.noContent().build();
  }

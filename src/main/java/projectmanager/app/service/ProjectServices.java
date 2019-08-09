@@ -1,10 +1,18 @@
 package projectmanager.app.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.data.jpa.domain.Specification;
+
 
 import projectmanager.app.entity.Project;
 import projectmanager.app.repository.ProjectRepo;
@@ -43,8 +51,26 @@ public class ProjectServices {
 		 projectFound.setStartDate(project.getStartDate());
 		 projectFound.setEndDate(project.getEndDate());
 		 projectFound.setPriority(project.getPriority());
+		 projectFound.setEmployeeID(project.getEmployeeID());
 		 projectRepo.save(projectFound);
 		 return ResponseEntity.noContent().build();
 	 }
+	 
+	 public List<Project> findProjectByName(String projectName) {
+	        //return taskRepo.findTasksByPriority(startRange, endRange);
+		 return projectRepo.findAll( new Specification<Project>(){
+				
+				@Override
+				public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+				List<Predicate> predicates = new ArrayList<>();
+		              
+		               if(projectName!=null){
+		                   predicates.add(criteriaBuilder.like(root.get("projectName"),"%"+projectName+"%"));
+		               }
+		               return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+				}
+			});
+	    }
+
 
 }

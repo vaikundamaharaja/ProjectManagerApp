@@ -44,5 +44,9 @@ public class ProjectController {
 	  public ResponseEntity<Object> updateProject( @RequestBody Project project, @PathVariable String projectID) {
 		  return projectServices.updateProject(project, projectID);
 	  }
+	  @RequestMapping(path="/getProjectByName/{projectName}", produces = MediaType.APPLICATION_JSON_VALUE)
+	  public List<Project> findProjectByName(@PathVariable String projectName){
+		  return projectServices.findProjectByName(projectName);
+	  }
 
 }

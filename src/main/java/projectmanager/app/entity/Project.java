@@ -26,7 +26,15 @@ public class Project {
 	
 	private int priority;
 	
+	@Column(name = "employee_id")
+	private String employeeID;
 	
+	public String getEmployeeID() {
+		return employeeID;
+	}
+	public void setEmployeeID(String employeeID) {
+		this.employeeID = employeeID;
+	}
 	public Date getStartDate() {
 		return startDate;
 	}
