@@ -1,6 +1,7 @@
 package projectmanager.app.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,6 +16,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 
 import projectmanager.app.entity.Project;
+import projectmanager.app.entity.Task;
 import projectmanager.app.repository.ProjectRepo;
 import projectmanager.app.util.IDGenerator;
 
@@ -71,6 +73,22 @@ public class ProjectServices {
 				}
 			});
 	    }
+	 
+	 public List<Project> getProjectsSortByStartDate(){
+			List<Project> projects = projectRepo.findAll();
+			projects.sort(Comparator.comparing(Project::getStartDate));
+			return projects;
+		}
+		public List<Project> getProjectsSortByEndDate(){
+			List<Project> projects = projectRepo.findAll();
+			projects.sort(Comparator.comparing(Project::getEndDate));
+			return projects;
+		}
+		public List<Project> getProjectsSortByPriority(){
+			List<Project> projects = projectRepo.findAll();
+			projects.sort(Comparator.comparing(Project::getPriority));
+			return projects;
+		}
 
 
 }

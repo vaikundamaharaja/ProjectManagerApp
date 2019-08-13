@@ -40,8 +40,20 @@ public class UsersController {
   public void deleteUser(@PathVariable String userID) {
 	  usersServices.deleteUser(userID);
   }
-  @PutMapping(path ="/updateUser/{parentTaskID}", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+  @PutMapping(path ="/updateUser/{userID}", consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Object> updateUser( @RequestBody Users user, @PathVariable String userID) {
 	  return usersServices.updateUser(user, userID);
+  }
+  @GetMapping(path ="/getUsersOrderByFirstName", produces = MediaType.APPLICATION_JSON_VALUE)
+  public List<Users> getUsersOrderByFirstName() {
+	  return usersServices.getUsersSortByFirstName();
+  }
+  @GetMapping(path ="/getUsersOrderByLastName", produces = MediaType.APPLICATION_JSON_VALUE)
+  public List<Users> getUsersOrderByLastName() {
+	  return usersServices.getTasksSortByLastName();
+  }
+  @GetMapping(path ="/getUsersOrderByEmployeeID", produces = MediaType.APPLICATION_JSON_VALUE)
+  public List<Users> getUsersOrderByEmployeeID() {
+	  return usersServices.getTasksSortByEmployeeID();
   }
 }

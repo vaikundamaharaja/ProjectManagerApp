@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import projectmanager.app.entity.Project;
+import projectmanager.app.entity.Task;
 import projectmanager.app.service.ProjectServices;
 
 @RestController
@@ -47,6 +48,18 @@ public class ProjectController {
 	  @RequestMapping(path="/getProjectByName/{projectName}", produces = MediaType.APPLICATION_JSON_VALUE)
 	  public List<Project> findProjectByName(@PathVariable String projectName){
 		  return projectServices.findProjectByName(projectName);
+	  }
+	  @GetMapping(path ="/getProjectsOrderByStartDate", produces = MediaType.APPLICATION_JSON_VALUE)
+	  public List<Project> getProjectsOrderByStartDate() {
+		  return projectServices.getProjectsSortByStartDate();
+	  }
+	  @GetMapping(path ="/getProjectsOrderByEndDate", produces = MediaType.APPLICATION_JSON_VALUE)
+	  public List<Project> getProjectsOrderByEndDate() {
+		  return projectServices.getProjectsSortByEndDate();
+	  }
+	  @GetMapping(path ="/getProjectsOrderByPriority", produces = MediaType.APPLICATION_JSON_VALUE)
+	  public List<Project> getProjectsOrderByPriority() {
+		  return projectServices.getProjectsSortByPriority();
 	  }
 
 }

@@ -65,6 +65,22 @@ public class TaskController {
 	  public ResponseEntity<Object> updateTask( @RequestBody Task task, @PathVariable String taskID) {
 		  return taskServices.updateTask(task, taskID);
 	  }
+	  @GetMapping(path ="/getTaskByProjectID/{projectID}", produces = MediaType.APPLICATION_JSON_VALUE)
+	  public List<Task> getTaskByProjectID(@PathVariable String projectID) {
+		  return taskServices.getTaskByProjectID(projectID);
+	  }
+	  @GetMapping(path ="/getTasksOrderByStartDate", produces = MediaType.APPLICATION_JSON_VALUE)
+	  public List<Task> getTasksOrderByStartDate() {
+		  return taskServices.getTasksSortByStartDate();
+	  }
+	  @GetMapping(path ="/getTasksOrderByEndDate", produces = MediaType.APPLICATION_JSON_VALUE)
+	  public List<Task> getTaskOrderByEndDate() {
+		  return taskServices.getTasksSortByEndDate();
+	  }
+	  @GetMapping(path ="/getTasksOrderByPriority", produces = MediaType.APPLICATION_JSON_VALUE)
+	  public List<Task> getTasksOrderByPriority() {
+		  return taskServices.getTasksSortByPriority();
+	  }
 	  @GetMapping
 	  public String getData() {
 		  return "Welcome to Task manager";

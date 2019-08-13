@@ -2,6 +2,7 @@ package projectmanager.app.service;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -121,4 +122,34 @@ public class TaskServices {
 		 return ResponseEntity.noContent().build();
 	 }
 
+	public List<Task> getTaskByProjectID(String projectID) {
+		 return taskRepo.findAll( new Specification<Task>() {
+				
+				@Override
+				public Predicate toPredicate(Root<Task> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+				List<Predicate> predicates = new ArrayList<>();
+		              
+		               if(projectID!=null ){
+		            	   predicates.add(criteriaBuilder.or(criteriaBuilder.equal(root.get("projectID"), projectID)));
+		               }
+		               return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+				}
+			});
+	}
+
+	public List<Task> getTasksSortByStartDate(){
+		List<Task> tasks = taskRepo.findAll();
+		tasks.sort(Comparator.comparing(Task::getStartDate));
+		return tasks;
+	}
+	public List<Task> getTasksSortByEndDate(){
+		List<Task> tasks = taskRepo.findAll();
+		tasks.sort(Comparator.comparing(Task::getEndDate));
+		return tasks;
+	}
+	public List<Task> getTasksSortByPriority(){
+		List<Task> tasks = taskRepo.findAll();
+		tasks.sort(Comparator.comparing(Task::getPriority));
+		return tasks;
+	}
 }

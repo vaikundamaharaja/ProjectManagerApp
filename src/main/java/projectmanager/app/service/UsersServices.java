@@ -1,5 +1,6 @@
 package projectmanager.app.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,20 @@ public class UsersServices {
 	 usersRepo.save(userFound);
 	 return ResponseEntity.noContent().build();
  }
+ public List<Users> getUsersSortByFirstName(){
+		List<Users> users = usersRepo.findAll();
+		users.sort(Comparator.comparing(Users::getFirstName));
+		return users;
+	}
+	public List<Users> getTasksSortByLastName(){
+		List<Users> users = usersRepo.findAll();
+		users.sort(Comparator.comparing(Users::getLastName));
+		return users;
+	}
+	public List<Users> getTasksSortByEmployeeID(){
+		List<Users> users = usersRepo.findAll();
+		users.sort(Comparator.comparing(Users::getEmployeeID));
+		return users;
+	}
 
 }
