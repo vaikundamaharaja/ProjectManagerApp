@@ -61,5 +61,6 @@ public class ProjectController {
 	  public List<Project> getProjectsOrderByPriority() {
 		  return projectServices.getProjectsSortByPriority();
 	  }
+	  
 
 }
